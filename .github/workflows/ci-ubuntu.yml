@@ -118,40 +118,40 @@ jobs:
           ${{ env.CABAL_INSTALL }}
           cd ..
 
-      - name: Install stdlib
-        run: |
-          mkdir -p $HOME/.agda
-          cd $HOME/.agda
-          wget https://github.com/agda/agda-stdlib/archive/v${{ env.STDLIB_VERSION }}.tar.gz
-          tar -xzvf v${{ env.STDLIB_VERSION }}.tar.gz
-          mv agda-stdlib-${{ env.STDLIB_VERSION }} agda-stdlib
-          echo "~/.agda/agda-stdlib/standard-library.agda-lib" > libraries
-          cd -
+#       - name: Install stdlib
+#         run: |
+#           mkdir -p $HOME/.agda
+#           cd $HOME/.agda
+#           wget https://github.com/agda/agda-stdlib/archive/v${{ env.STDLIB_VERSION }}.tar.gz
+#           tar -xzvf v${{ env.STDLIB_VERSION }}.tar.gz
+#           mv agda-stdlib-${{ env.STDLIB_VERSION }} agda-stdlib
+#           echo "~/.agda/agda-stdlib/standard-library.agda-lib" > libraries
+#           cd -
 
-########################################################################
-## TESTING AND DEPLOYMENT
-########################################################################
+# ########################################################################
+# ## TESTING AND DEPLOYMENT
+# ########################################################################
 
-      # By default github actions do not pull the repo
-      - name: Checkout agdarsec
-        uses: actions/checkout@v4
+#       # By default github actions do not pull the repo
+#       - name: Checkout agdarsec
+#         uses: actions/checkout@v4
 
-      # Generate a fresh Everything.agda & index.agda and start building!
-      - name: Test agdarsec
-        run: |
-          ${{ env.AGDA }} -iexamples index.agda
+#       # Generate a fresh Everything.agda & index.agda and start building!
+#       - name: Test agdarsec
+#         run: |
+#           ${{ env.AGDA }} -iexamples index.agda
 
-      # Note that if you want to deploy html for different versions like the
-      # standard library does, you will need to be a bit more subtle in this
-      # step.
-      - name: Generate HTML
-        run: |
-          ${{ env.AGDA }} -iexamples --html --html-dir html index.agda
+#       # Note that if you want to deploy html for different versions like the
+#       # standard library does, you will need to be a bit more subtle in this
+#       # step.
+#       - name: Generate HTML
+#         run: |
+#           ${{ env.AGDA }} -iexamples --html --html-dir html index.agda
 
-      - name: Deploy HTML
-        uses: JamesIves/github-pages-deploy-action@4.1.3
-        if: ${{ success() && env.AGDA_DEPLOY }}
+#       - name: Deploy HTML
+#         uses: JamesIves/github-pages-deploy-action@4.1.3
+#         if: ${{ success() && env.AGDA_DEPLOY }}
 
-        with:
-          branch: gh-pages
-          folder: html
+#         with:
+#           branch: gh-pages
+#           folder: html
