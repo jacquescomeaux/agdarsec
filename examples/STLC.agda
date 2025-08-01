@@ -1,3 +1,5 @@
+{-# OPTIONS --guardedness #-}
+
 module STLC where
 
 open import Level.Bounded using ([_])

@@ -1,3 +1,5 @@
+{-# OPTIONS --guardedness #-}
+
 open import Level using (Level)
 
 module Base (l : Level) where
