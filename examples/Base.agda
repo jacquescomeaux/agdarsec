@@ -23,8 +23,8 @@ open import Data.Maybe as Maybe using (nothing; just; maybe′)
 open import Data.Maybe.Effectful as MaybeCat
 open import Data.Sum
 open import Function
-open import Category.Monad
-open import Category.Monad.State
+open import Effect.Monad
+open import Effect.Monad.State
 open import Relation.Nullary
 open import Relation.Nullary.Decidable
 
